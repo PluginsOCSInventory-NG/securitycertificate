@@ -16,11 +16,12 @@ function plugin_init_securitycertificate()
   // Security Certificate table creation
   $object -> sql_query("CREATE TABLE IF NOT EXISTS `securitycertificate` (
                         `ID` INT(11) NOT NULL AUTO_INCREMENT,
+                        `HARDWARE_ID` INT(11) NOT NULL,
                         `NAME` VARCHAR(255) DEFAULT NULL,
                         `AUTORITY` VARCHAR(255) DEFAULT NULL,
                         `DATESTART` VARCHAR(255) DEFAULT NULL,
                         `EXPIRATION` VARCHAR(255) DEFAULT NULL,
-                        PRIMARY KEY (`ID`)
+                        PRIMARY KEY (`ID`, `HARDWARE_ID`)
                         ) ENGINE=INNODB;");
 }
 
