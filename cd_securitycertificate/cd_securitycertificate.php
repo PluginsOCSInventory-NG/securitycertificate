@@ -38,7 +38,7 @@ if(AJAX){
     $list_col_cant_del=$list_fields;
     $default_fields= $list_fields;
     $sql=prepare_sql_tab($list_fields);
-    $sql['SQL']  .= "FROM $table_name WHERE (hardware_id = $systemid)";
+    $sql['SQL']  .= "FROM $table_name WHERE (hardware_id = $systemid) GROUP BY `NAME`, `DATESTART`";
     array_push($sql['ARG'],$systemid);
     $tab_options['ARG_SQL']=$sql['ARG'];
     $tab_options['ARG_SQL_COUNT']=$systemid;
