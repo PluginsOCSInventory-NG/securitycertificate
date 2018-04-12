@@ -11,7 +11,7 @@ function plugin_version_securitycertificate()
 function plugin_init_securitycertificate()
 {
   $object = new plugins;
-  $object = add_cd_entry("securitycertificate", "other");
+  $object->add_cd_entry("securitycertificate", "other");
 
   // Security Certificate table creation
   $object -> sql_query("CREATE TABLE IF NOT EXISTS `securitycertificate` (
