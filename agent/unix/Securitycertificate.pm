@@ -42,9 +42,13 @@ sub securitycertificate_inventory_handler {
     while (my $certificate = readdir(DIR)) {
         if (-f "$directory$certificate") {
             my @infos="openssl x509 -in $directory$certificate -text";
-            my $content = `@infos`;
 
-            my @lines = split('\n', $content);
+            if (index ($certificate, ".") != -1) {
+                my $content = `@infos`;
+
+                my @lines = split('\n', $content);
+            }
+
             my $issuer;
             my $datestart;
             my $dateend;
@@ -60,14 +64,16 @@ sub securitycertificate_inventory_handler {
                     $dateend = substr($line, index ($line, "Not After :") + 12);
                 }
             }
-            push @{$common->{xmltags}->{SECURITYCERTIFICATE}},
-            {
-                NAME => [$certificate],
-                AUTORITY => [$issuer],
-                DATESTART => [$datestart],
-                EXPIRATION => [$dateend],
-            };
-            $issuer = $datestart = $dateend = undef;
+            if ($issuer ne "" || $datestart ne "" || $dateend ne "") {
+                push @{$common->{xmltags}->{SECURITYCERTIFICATE}},
+                {
+                    NAME => [$certificate],
+                    AUTORITY => [$issuer],
+                    DATESTART => [$datestart],
+                    EXPIRATION => [$dateend],
+                };
+                $issuer = $datestart = $dateend = undef;
+            }
         }
     }
 
