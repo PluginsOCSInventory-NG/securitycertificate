@@ -1,20 +1,14 @@
 <?php
-function plugin_version_securitycertificate()
-{
-  return array('name' => 'securitycertificate',
-  'version' => '1.0',
-  'author'=> 'Charlene AUGER, Rudy LAURENT',
-  'license' => 'GPLv2',
-  'verMinOcs' => '2.4');
-}
 
-function plugin_init_securitycertificate()
+/**
+ * This function is called on installation and is used to create database schema for the plugin
+ */
+function extension_install_securitycertificate()
 {
-  $object = new plugins;
-  $object->add_cd_entry("securitycertificate", "other");
+  $commonObject = new ExtensionCommon;
 
   // Security Certificate table creation
-  $object -> sql_query("CREATE TABLE IF NOT EXISTS `securitycertificate` (
+  $commonObject -> sqlQuery("CREATE TABLE IF NOT EXISTS `securitycertificate` (
                         `ID` INT(11) NOT NULL AUTO_INCREMENT,
                         `HARDWARE_ID` INT(11) NOT NULL,
                         `NAME` VARCHAR(255) DEFAULT NULL,
@@ -25,10 +19,19 @@ function plugin_init_securitycertificate()
                         ) ENGINE=INNODB;");
 }
 
-function plugin_delete_securitycertificate()
+/**
+ * This function is called on removal and is used to destroy database schema for the plugin
+ */
+function extension_delete_securitycertificate()
 {
-  $object = new plugins;
-  $object -> del_cd_entry("securitycertificate");
+  $commonObject = new ExtensionCommon;
+  $commonObject -> sqlQuery("DROP TABLE `securitycertificate`;");
+}
 
-  $object -> sql_query("DROP TABLE `securitycertificate`;");
+/**
+ * This function is called on plugin upgrade
+ */
+function extension_upgrade_securitycertificate()
+{
+
 }
