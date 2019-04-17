@@ -1,8 +1,10 @@
 {
   "displayName" : "Security Certificate",
   "author" : ["Charlène AUGER, Rudy LAURENT"],
-  "contributor" : [],
-  "supportedAgent" : ["Multiple"],
+  "contributor" : [""],
+  "supportedAgent" : ["All"],
+  "version" : "2.0",
+  "licence" : "GPLv2",
   "description" : {
     "fr" : "Certificat de sécurité",
     "en" : "Security certificate"
