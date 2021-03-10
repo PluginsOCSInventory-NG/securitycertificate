@@ -36,6 +36,7 @@ sub securitycertificate_inventory_handler {
     $logger->debug("Starting securitycertificate inventory plugin");
 
     my $directory = '/etc/ssl/certs/';
+    my @lines;
 
     opendir (DIR, $directory) or die $!;
 
@@ -45,8 +46,7 @@ sub securitycertificate_inventory_handler {
 
             if (index ($certificate, ".") != -1) {
                 my $content = `@infos`;
-
-                my @lines = split('\n', $content);
+                @lines = split('\n', $content);
             }
 
             my $issuer;
