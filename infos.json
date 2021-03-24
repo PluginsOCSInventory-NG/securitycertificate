@@ -3,7 +3,7 @@
   "author" : ["Charlène AUGER, Rudy LAURENT"],
   "contributor" : [""],
   "supportedAgent" : ["All"],
-  "version" : "2.0",
+  "version" : "2.1",
   "licence" : "GPLv2",
   "description" : {
     "fr" : "Certificat de sécurité",
